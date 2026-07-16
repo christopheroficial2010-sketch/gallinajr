@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallina Tech Jr - El Gurú Tecnológico</title>
+    <!-- Tailwind CSS para diseño moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Markdown Parser para formatear respuestas enriquecidas con bloques de código -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        code, pre {
+            font-family: 'Fira Code', monospace;
+        }
+        /* Scrollbar cibernética */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #06b6d4;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+        /* Efecto de pulso suave */
+        @keyframes cyber-pulse {
+            0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px #06b6d4); }
+            50% { opacity: 0.6; filter: drop-shadow(0 0 8px #06b6d4); }
+        }
+        .animate-cyber-pulse {
+            animation: cyber-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Brillo Neon Intenso (Color Fuerte Multicapa) */
+        @keyframes neon-glow-intense {
+            0%, 100% { 
+                filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.95)) 
+                        drop-shadow(0 0 15px rgba(34, 211, 238, 0.75)) 
+                        drop-shadow(0 0 35px rgba(37, 99, 235, 0.6))
+                        drop-shadow(0 0 60px rgba(37, 99, 235, 0.4)); 
+            }
+            50% { 
+                filter: drop-shadow(0 0 10px rgba(34, 211, 238, 1)) 
+                        drop-shadow(0 0 30px rgba(34, 211, 238, 0.9)) 
+                        drop-shadow(0 0 65px rgba(37, 99, 235, 0.8))
+                        drop-shadow(0 0 100px rgba(6, 182, 212, 0.7)); 
+            }
+        }
+        .animate-neon-strong {
+            animation: neon-glow-intense 2s infinite ease-in-out;
+        }
+
+        /* Resplandor para bordes interactivos */
+        .cyber-glow-border {
+            border: 1px solid rgba(6, 182, 212, 0.3) !important;
+            box-shadow: 0 0 12px rgba(6, 182, 212, 0.1), inset 0 0 8px rgba(6, 182, 212, 0.05);
+            transition: all 0.3s ease;
+        }
+        .cyber-glow-border:hover, .cyber-glow-border:focus-within {
+            border-color: rgba(34, 211, 238, 0.8) !important;
+            box-shadow: 0 0 20px rgba(34, 211, 238, 0.4), inset 0 0 12px rgba(34, 211, 238, 0.15);
+        }
+
+        /* Texto de Neón Fuerte */
+        .neon-text-glow {
+            text-shadow: 0 0 6px rgba(34, 211, 238, 0.8), 0 0 15px rgba(34, 211, 238, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- ADVERTENCIA DE COMPATIBILIDAD (Solo visible si están en Internet Explorer o sin JS) -->
+    <div id="browser-warning" style="background-color: #f59e0b; color: #0f172a; padding: 16px; text-align: center; font-family: sans-serif; font-weight: bold; border-bottom: 4px solid #d97706; z-index: 9999;">
+        ⚠️ ATENCIÓN: Estás abriendo el chatbot con un navegador obsoleto (Internet Explorer) o los scripts están bloqueados.<br>
+        <span style="font-weight: normal; font-size: 14px;">Para que funcione, ve a tu pendrive, haz <strong>clic derecho</strong> sobre el archivo, selecciona <strong>"Abrir con..."</strong> y elige <strong>Google Chrome</strong> o <strong>Microsoft Edge</strong>.</span>
+    </div>
+    <script>
+        // Si el navegador es moderno y ejecuta JS, ocultamos la advertencia inmediatamente
+        document.getElementById('browser-warning').style.display = 'none';
+    </script>
+
+    <!-- Contenedor Principal -->
+    <div class="flex flex-col h-screen overflow-hidden">
+        
+        <!-- Header -->
+        <header class="bg-[#0f172a] border-b border-cyan-950 px-6 py-4 flex items-center justify-between shrink-0 shadow-lg z-10">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 flex items-center justify-center shrink-0 animate-neon-strong">
+                    <!-- Logotipo Tecnológico GJ Vectorial -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-full h-full">
+                        <defs>
+                            <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#22d3ee" />
+                                <stop offset="100%" stop-color="#2563eb" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Hexágono exterior de circuito -->
+                        <polygon points="50,8 88,30 88,70 50,92 12,70 12,30" fill="#0b0f19" stroke="url(#logo-grad)" stroke-width="4.5" stroke-linejoin="round" />
+                        <!-- Nodos de circuito en las esquinas -->
+                        <circle cx="50" cy="8" r="3" fill="#22d3ee" />
+                        <circle cx="88" cy="30" r="3" fill="#22d3ee" />
+                        <circle cx="88" cy="70" r="3" fill="#22d3ee" />
+                        <circle cx="50" cy="92" r="3" fill="#22d3ee" />
+                        <circle cx="12" cy="70" r="3" fill="#22d3ee" />
+                        <circle cx="12" cy="30" r="3" fill="#22d3ee" />
+                        <!-- G de circuito -->
+                        <path d="M 52 32 L 34 32 L 34 68 L 54 68 L 54 50 L 44 50" fill="none" stroke="url(#logo-grad)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                        <!-- J de circuito -->
+                        <path d="M 66 32 L 66 60 C 66 72 56 74 46 74" fill="none" stroke="#60a5fa" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                        <!-- Conexión de nodo pequeño -->
+                        <line x1="34" y1="50" x2="22" y2="50" stroke="#38bdf8" stroke-width="2" stroke-dasharray="2 2" />
+                        <circle cx="22" cy="50" r="2" fill="#38bdf8" />
+                    </svg>
+                </div>
+                <div>
+                    <!-- Nombre del portal brillando fuertemente en color cian -->
+                    <h1 class="font-bold text-lg text-white tracking-tight flex items-center gap-1.5">
+                        <span class="neon-text-glow">Gallina Tech Jr</span> <span class="text-[10px] bg-cyan-950 text-cyan-400 px-2 py-0.5 rounded-md border border-cyan-800 font-semibold uppercase tracking-wider">v3.0.0</span>
+                    </h1>
+                    <p class="text-xs text-cyan-400 font-medium flex items-center gap-1">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse animate-cyber-pulse"></span>
+                        Terminal en Línea: Listo para codificar
+                    </p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <!-- Botón de Configuración (Móvil) -->
+                <button id="toggle-sidebar-btn" class="md:hidden p-2 rounded-lg border border-cyan-800 hover:bg-cyan-950 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                    </svg>
+                </button>
+                <span class="text-xs bg-cyan-950/50 text-cyan-400 px-3 py-1.5 rounded-full font-semibold border border-cyan-900 hidden sm:inline-block">Intel-Core Gemini 3.0</span>
+            </div>
+        </header>
+
+        <!-- Área de Contenido -->
+        <div class="flex-1 flex overflow-hidden relative">
+            
+            <!-- Sidebar Lateral de Configuración -->
+            <aside id="sidebar" class="absolute inset-y-0 left-0 w-80 bg-[#0f172a] border-r border-cyan-950 p-6 flex flex-col gap-5 z-20 transform -translate-x-full transition-transform duration-300 md:relative md:translate-x-0 overflow-y-auto">
+                
+                <!-- Sección de Llave de API -->
+                <div class="flex flex-col gap-2">
+                    <label class="text-xs font-bold text-cyan-500 uppercase tracking-wider">Configuración de API</label>
+                    <div class="relative">
+                        <input type="password" id="api-key-input" placeholder="Clave de API de Gemini" class="w-full px-3 py-2 text-sm bg-slate-900 border border-cyan-900 text-slate-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent pr-10 placeholder-slate-600">
+                        <button id="toggle-api-visibility" class="absolute right-3 top-1/2 -translate-y-1/2 text-cyan-600 hover:text-cyan-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" id="eye-icon">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Personalidades Predefinidas -->
+                <div class="flex flex-col gap-2">
+                    <label class="text-xs font-bold text-cyan-500 uppercase tracking-wider">Protocolo de Operación</label>
+                    <select id="preset-select" class="w-full px-3 py-2 text-sm bg-slate-900 border border-cyan-900 text-slate-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent">
+                        <option value="default">Gurú General de Tecnología</option>
+                        <option value="software">Ingeniero de Software y Código</option>
+                        <option value="hardware">Analista de Hardware y Gadgets</option>
+                        <option value="cyber">Especialista en Ciberseguridad</option>
+                        <option value="custom">Personalización Manual...</option>
+                    </select>
+                </div>
+
+                <!-- Instrucciones del Sistema -->
+                <div class="flex flex-col gap-2">
+                    <label class="text-xs font-bold text-cyan-500 uppercase tracking-wider">Directiva Central (System Prompt)</label>
+                    <textarea id="system-prompt" rows="5" class="w-full px-3 py-2 text-sm bg-slate-900 border border-cyan-900 text-slate-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none leading-relaxed" placeholder="Instrucciones del bot..."></textarea>
+                </div>
+
+                <!-- Parámetros avanzados -->
+                <div class="flex flex-col gap-4 border-t border-cyan-950 pt-4">
+                    <label class="text-xs font-bold text-cyan-500 uppercase tracking-wider">Temperatura (Creatividad)</label>
+                    <div>
+                        <div class="flex justify-between text-xs font-medium text-slate-400 mb-1">
+                            <span>Lógico / Preciso</span>
+                            <span id="temp-val">0.3</span>
+                        </div>
+                        <input type="range" id="temp-range" min="0" max="1" step="0.1" value="0.3" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+                    </div>
+                </div>
+
+                <!-- Síntesis de voz (TTS) -->
+                <div class="flex flex-col gap-2 border-t border-cyan-950 pt-4">
+                    <label class="text-xs font-bold text-cyan-500 uppercase tracking-wider">Lector Vocal (TTS)</label>
+                    <div class="flex items-center gap-2">
+                        <input type="checkbox" id="tts-enabled" class="rounded text-cyan-600 focus:ring-cyan-500 bg-slate-900 border-cyan-900 h-4 w-4">
+                        <label for="tts-enabled" class="text-sm text-slate-300">Auto-sintetizar respuesta</label>
+                    </div>
+                    <select id="tts-voice-select" class="w-full px-3 py-2 text-sm bg-slate-900 border border-cyan-900 text-slate-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                        <option value="Zephyr">Zephyr (Voz cibernética rápida)</option>
+                        <option value="Kore">Kore (Voz firme / Servidor)</option>
+                        <option value="Charon">Charon (Voz profunda / Operador)</option>
+                        <option value="Fenrir">Fenrir (Voz energética / Amigable)</option>
+                    </select>
+                </div>
+
+                <!-- Ficha de Datos Tecnológicos Rápidos con cyber-glow-border -->
+                <div class="bg-cyan-950/20 border border-cyan-900/50 rounded-xl p-3 text-xs flex flex-col gap-1.5 cyber-glow-border">
+                    <h3 class="font-bold text-cyan-400 flex items-center gap-1 neon-text-glow">
+                        ⚡ Quick Specs & Hacks
+                    </h3>
+                    <div class="flex justify-between text-slate-300 mt-1">
+                        <span>• Kernel base</span>
+                        <span class="font-bold text-cyan-400">Gemini 3 Flash</span>
+                    </div>
+                    <div class="flex justify-between text-slate-300">
+                        <span>• Especialidad</span>
+                        <span class="font-bold text-cyan-400">Código, Dev, HW</span>
+                    </div>
+                    <div class="flex justify-between text-slate-300">
+                        <span>• Respuestas</span>
+                        <span class="font-bold text-cyan-400">Markdown Enriquecido</span>
+                    </div>
+                    <div class="flex justify-between text-slate-300">
+                        <span>• Lenguajes</span>
+                        <span class="font-bold text-cyan-400">JS, PY, C++, Bash</span>
+                    </div>
+                    <div class="flex justify-between text-slate-300 border-t border-cyan-950 pt-1.5 mt-1.5">
+                        <span class="font-medium">• Soporte API</span>
+                        <span class="font-bold text-emerald-400">Operativo</span>
+                    </div>
+                </div>
+
+                <!-- Acciones Rápidas -->
+                <div class="mt-auto pt-4 border-t border-cyan-950 flex flex-col gap-2">
+                    <button id="clear-chat-btn" class="w-full py-2 px-3 text-sm font-semibold text-rose-400 bg-rose-950/20 border border-rose-900 hover:bg-rose-950/50 rounded-lg transition flex items-center justify-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                        Reiniciar Terminal
+                    </button>
+                    <button id="export-chat-btn" class="w-full py-2 px-3 text-sm font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-lg transition flex items-center justify-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Exportar Logs (.JSON)
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Capa de oscurecimiento para móviles cuando el sidebar está abierto -->
+            <div id="sidebar-overlay" class="absolute inset-0 bg-slate-950/60 z-10 hidden md:hidden"></div>
+
+            <!-- Panel de Chat Principal -->
+            <main class="flex-1 flex flex-col h-full bg-[#0d121f] relative">
+                
+                <!-- Área de Mensajes -->
+                <div id="messages-container" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
+                    <!-- Mensaje Inicial de Bienvenida -->
+                    <div class="flex gap-3 max-w-3xl mr-auto">
+                        <div class="w-8 h-8 flex items-center justify-center shrink-0 animate-neon-strong mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-full h-full">
+                                <polygon points="50,8 88,30 88,70 50,92 12,70 12,30" fill="#0b0f19" stroke="#22d3ee" stroke-width="5" stroke-linejoin="round" />
+                                <path d="M 52 32 L 34 32 L 34 68 L 54 68 L 54 50 L 44 50" fill="none" stroke="#22d3ee" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M 66 32 L 66 60 C 66 72 56 74 46 74" fill="none" stroke="#60a5fa" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="bg-[#131a2e] border border-cyan-950 rounded-2xl rounded-tl-none p-4 shadow-md text-slate-300 leading-relaxed text-sm cyber-glow-border">
+                            <p class="font-bold text-white text-base mb-1 neon-text-glow">¡Iniciando protocolo de consulta! Soy Gallina Tech Jr 💻⚡🐔</p>
+                            <p>¡Hola! Soy Gallina Tech Jr, tu asistente de inteligencia artificial, especialista en desarrollo de software, arquitectura de sistemas y ciberseguridad. Estoy lista para ayudarte a optimizar algoritmos, armar tu PC ideal o debatir sobre las últimas innovaciones tecnológicas de forma 100% clara, estructurada y didáctica.</p>
+                            
+                            <p class="mt-3 text-xs text-cyan-400 font-semibold uppercase tracking-wider neon-text-glow">¿Por cuál directiva quieres iniciar?</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
+                                <button onclick="quickPrompt('Explícame de forma detallada cómo funcionan los transformadores y los LLM modernos')" class="text-left text-xs bg-slate-900 hover:bg-cyan-950 text-slate-300 font-medium px-3 py-2 rounded-lg border border-cyan-900 transition flex items-center gap-1.5 hover:border-cyan-400">
+                                    🤖 Inteligencia Artificial & LLMs
+                                </button>
+                                <button onclick="quickPrompt('Ayúdame a crear una plantilla básica de backend con Node.js, Express y TypeScript')" class="text-left text-xs bg-slate-900 hover:bg-cyan-950 text-slate-300 font-medium px-3 py-2 rounded-lg border border-cyan-900 transition flex items-center gap-1.5 hover:border-cyan-400">
+                                    💻 Plantilla Node.js + Express
+                                </button>
+                                <button onclick="quickPrompt('¿Qué componentes y procesador me recomiendas para armar una PC óptima de desarrollo y virtualización?')" class="text-left text-xs bg-slate-900 hover:bg-cyan-950 text-slate-300 font-medium px-3 py-2 rounded-lg border border-cyan-900 transition flex items-center gap-1.5 hover:border-cyan-400">
+                                    ⚙️ Hardware para Desarrollo
+                                </button>
+                                <button onclick="quickPrompt('¿Cuáles son las mejores prácticas de ciberseguridad para proteger una API REST de inyecciones y ataques?')" class="text-left text-xs bg-slate-900 hover:bg-cyan-950 text-slate-300 font-medium px-3 py-2 rounded-lg border border-cyan-900 transition flex items-center gap-1.5 hover:border-cyan-400">
+                                    🛡️ Asegurar API REST (Ciberseguridad)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Toast de Notificaciones Personalizado -->
+                <div id="toast" class="absolute bottom-24 left-1/2 -translate-x-1/2 bg-cyan-950 border border-cyan-800 text-cyan-200 text-xs px-4 py-2.5 rounded-full shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none flex items-center gap-2">
+                    <span id="toast-message">Copiado al portapapeles</span>
+                </div>
+
+                <!-- Entrada de Texto / Input Box con cyber-glow-border -->
+                <div class="border-t border-cyan-950 bg-[#0f172a] p-4 shrink-0">
+                    <div class="max-w-3xl mx-auto">
+                        <form id="chat-form" class="relative flex items-center">
+                            <textarea id="chat-input" rows="1" placeholder="Escribe tu consulta tecnológica o introduce código para revisión..." class="w-full pl-4 pr-12 py-3 bg-slate-900 border border-cyan-950 text-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-sm resize-none max-h-32 transition-colors placeholder-slate-500 cyber-glow-border"></textarea>
+                            
+                            <!-- Botón de Envío -->
+                            <button type="submit" id="send-btn" class="absolute right-2 p-2 rounded-lg bg-cyan-600 text-white hover:bg-cyan-500 transition disabled:opacity-50 disabled:hover:bg-cyan-600 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                                </svg>
+                            </button>
+                        </form>
+                        <p class="text-[10px] text-slate-500 text-center mt-2">Gallina Tech Jr procesa tu solicitud en servidores de IA. Verifica el código resultante antes de implementarlo en producción.</p>
+                    </div>
+                </div>
+
+            </main>
+
+        </div>
+    </div>
+
+    <script>
+        // Configuración y Variables del Sistema
+        const apiKey = ""; // Dejar vacío para usar la llave provista por el entorno en tiempo de ejecución.
+        let chatHistory = [];
+        let isGenerating = false;
+
+        // Personalidades del Sistema Predeterminadas en Enfoque Tecnológico
+        // Forzamos a que siempre responda con máxima claridad, orden y limpieza.
+        const presets = {
+            default: "Eres Gallina Tech Jr, una ingeniosa, experta y sumamente carismática gurú tecnológica global (con un toque genial y divertido). Tu misión es responder consultas sobre todo tipo de tecnología con rigor, absoluta claridad, orden y entusiasmo. Estás profundamente informada sobre hardware moderno (CPUs, GPUs, setups de PC), software, sistemas operativos y redes de datos. Utiliza explicaciones ricas, desglosa los temas complejos con listas lógicas u organízalos con deliciosas tablas técnicas y bloques de código bien especificados con markdown. Explica todo de forma que se entienda perfectamente a la primera.",
+            software: "Eres la Ingeniera de Software Principal de Gallina Tech Jr. Tu especialidad absoluta es el desarrollo de software limpio, modular y la optimización de código. Explicas conceptos avanzados de algoritmos, patrones de diseño de software (SOLID, MVC), arquitecturas de backend y frontend, y cómo resolver errores de compilación complejos de manera didáctica. Siempre formatea tus bloques de código especificando el lenguaje (ej: ```javascript, ```python) y añade comentarios detallados en cada fragmento. Responde siempre con estructura clara y explicaciones paso a paso.",
+            hardware: "Eres la Gurú de Hardware y Ensambles en Gallina Tech Jr. Tu pasión y enfoque es analizar hardware, silicio, periféricos, redes de alto rendimiento y arquitectura de servidores. Ofreces de forma exhaustiva presupuestos balanceados de PC, comparaciones de rendimiento de componentes (Intel vs AMD, Nvidia vs AMD), consejos sobre overclocking y mantenimiento técnico preventivo de sistemas de manera clara y con tablas comparativas.",
+            cyber: "Eres la Especialista Principal en Ciberseguridad de Gallina Tech Jr (White Hat Hacker). Te dedicas a enseñar y proteger redes, sistemas operativos y APIs. Respondes consultas sobre vulnerabilidades comunes (OWASP Top 10), técnicas de mitigación, implementación de cifrado robusto, protocolos SSL/TLS seguros, gestión de identidad y autenticación multifactor de forma clara y con esquemas conceptuales paso a paso."
+        };
+
+        // Elementos del DOM
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const toggleSidebarBtn = document.getElementById('toggle-sidebar-btn');
+        const presetSelect = document.getElementById('preset-select');
+        const systemPromptArea = document.getElementById('system-prompt');
+        const tempRange = document.getElementById('temp-range');
+        const tempVal = document.getElementById('temp-val');
+        const apiKeyInput = document.getElementById('api-key-input');
+        const toggleApiVisibility = document.getElementById('toggle-api-visibility');
+        const eyeIcon = document.getElementById('eye-icon');
+        const chatForm = document.getElementById('chat-form');
+        const chatInput = document.getElementById('chat-input');
+        const messagesContainer = document.getElementById('messages-container');
+        const clearChatBtn = document.getElementById('clear-chat-btn');
+        const exportChatBtn = document.getElementById('export-chat-btn');
+        const sendBtn = document.getElementById('send-btn');
+        const ttsEnabled = document.getElementById('tts-enabled');
+        const ttsVoiceSelect = document.getElementById('tts-voice-select');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toast-message');
+
+        // Inicializar Estado de Interfaz
+        systemPromptArea.value = presets.default;
+
+        // Toggle para la visibilidad de la barra lateral en móviles
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        }
+
+        toggleSidebarBtn.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+
+        // Controlar la visibilidad de la API Key
+        toggleApiVisibility.addEventListener('click', () => {
+            const type = apiKeyInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            apiKeyInput.setAttribute('type', type);
+            if (type === 'password') {
+                eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                `;
+            } else {
+                eyeIcon.innerHTML = `
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a10.025 10.025 0 01-4.132-5.4M9.69 3.57A10.024 10.024 0 0112 5c4.478 0 8.268 2.943 9.542 7a10.025 10.025 0 01-4.132 5.4M9.9 9.9a3 3 0 114.2 4.2m-4.2-4.2l4.2 4.2" />
+                `;
+            }
+        });
+
+        // Cambiar Preset de Personalidad
+        presetSelect.addEventListener('change', (e) => {
+            const val = e.target.value;
+            if (val !== 'custom') {
+                systemPromptArea.value = presets[val];
+                systemPromptArea.setAttribute('readonly', true);
+                systemPromptArea.classList.add('bg-slate-900/50', 'text-slate-500');
+            } else {
+                systemPromptArea.removeAttribute('readonly');
+                systemPromptArea.classList.remove('bg-slate-900/50', 'text-slate-500');
+            }
+        });
+
+        // Actualizar visualizador de Temperatura
+        tempRange.addEventListener('input', (e) => {
+            tempVal.textContent = e.target.value;
+        });
+
+        // Auto-redimensionar el input de texto de chat
+        chatInput.addEventListener('input', () => {
+            chatInput.style.height = 'auto';
+            chatInput.style.height = (chatInput.scrollHeight) + 'px';
+        });
+
+        // Enviar mensaje rápido desde sugerencias
+        function quickPrompt(text) {
+            chatInput.value = text;
+            chatInput.dispatchEvent(new Event('input'));
+            handleMessageSubmit();
+        }
+
+        // Mostrar Toast de notificación
+        function showToast(message) {
+            toastMessage.textContent = message;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        // Copiar texto de un bloque al portapapeles
+        function copyText(text) {
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+            showToast("Logs/Texto copiados con éxito");
+        }
+
+        // Limpiar el historial
+        clearChatBtn.addEventListener('click', () => {
+            chatHistory = [];
+            messagesContainer.innerHTML = `
+                <div class="flex gap-3 max-w-3xl mr-auto">
+                    <div class="w-8 h-8 flex items-center justify-center shrink-0 animate-neon-strong mt-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-full h-full">
+                            <polygon points="50,8 88,30 88,70 50,92 12,70 12,30" fill="#0b0f19" stroke="#22d3ee" stroke-width="5" stroke-linejoin="round" />
+                            <path d="M 52 32 L 34 32 L 34 68 L 54 68 L 54 50 L 44 50" fill="none" stroke="#22d3ee" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M 66 32 L 66 60 C 66 72 56 74 46 74" fill="none" stroke="#60a5fa" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="bg-[#131a2e] border border-cyan-950 rounded-2xl rounded-tl-none p-4 shadow-md text-slate-300 leading-relaxed text-sm cyber-glow-border">
+                        <p class="font-semibold text-white mb-1">Terminal de logs vaciada.</p>
+                        <p>Buffer de memoria temporal de Gallina Tech Jr limpio. Estoy lista para una nueva sesión de diagnóstico o codificación con máxima claridad. ¿Cuál es tu consulta?</p>
+                    </div>
+                </div>
+            `;
+            showToast("Consola de chat reiniciada");
+        });
+
+        // Exportar conversación
+        exportChatBtn.addEventListener('click', () => {
+            if (chatHistory.length === 0) {
+                showToast("No hay registros disponibles para exportar.");
+                return;
+            }
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(chatHistory, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", "gallina-tech-logs.json");
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            showToast("Logs descargados como JSON");
+        });
+
+        // Manejar el envío de mensajes desde el formulario
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            handleMessageSubmit();
+        });
+
+        // Evento Enter para enviar (Shift+Enter para salto de línea)
+        chatInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleMessageSubmit();
+            }
+        });
+
+        // Función Principal para Enviar Mensajes y Consultar Gemini
+        async function handleMessageSubmit() {
+            const query = chatInput.value.trim();
+            if (!query || isGenerating) return;
+
+            // Bloquear UI
+            isGenerating = true;
+            chatInput.value = '';
+            chatInput.style.height = 'auto';
+            sendBtn.disabled = true;
+
+            // Renderizar Mensaje del Usuario
+            appendMessage('user', query);
+
+            // Generar contenedor para la respuesta del bot con efecto de carga
+            const botMessageId = 'bot-' + Date.now();
+            appendLoadingPlaceholder(botMessageId);
+
+            try {
+                // Obtener llave de API (priorizar el campo del formulario, o usar variable vacía si el entorno la inyecta)
+                const currentKey = apiKeyInput.value.trim() || apiKey;
+
+                // Construcción de la conversación con el formato correcto de Gemini
+                const systemPrompt = systemPromptArea.value.trim() + " IMPORTANTE: Responde de forma sumamente didáctica, desglosando las ideas con viñetas, esquemas o tablas para una claridad total.";
+                
+                // Preparar los turnos de la conversación
+                const contents = [];
+                chatHistory.forEach(msg => {
+                    contents.push({
+                        role: msg.role === 'user' ? 'user' : 'model',
+                        parts: [{ text: msg.text }]
+                    });
+                });
+
+                // Añadir el mensaje actual del usuario al payload
+                contents.push({
+                    role: 'user',
+                    parts: [{ text: query }]
+                });
+
+                // LLamada con Exponential Backoff a la API
+                const resultText = await callGeminiAPIWithRetry(currentKey, contents, systemPrompt);
+
+                // Guardar en el historial local
+                chatHistory.push({ role: 'user', text: query });
+                chatHistory.push({ role: 'model', text: resultText });
+
+                // Remover el placeholder de carga y renderizar la respuesta del Bot
+                removeLoadingPlaceholder();
+                appendMessage('model', resultText, botMessageId);
+
+                // Síntesis de voz automática si está activa
+                if (ttsEnabled.checked) {
+                    speakText(resultText);
+                }
+
+            } catch (err) {
+                removeLoadingPlaceholder();
+                appendError(err.message || "Error al procesar la comanda tecnológica.");
+            } finally {
+                isGenerating = false;
+                sendBtn.disabled = false;
+            }
+        }
+
+        // Llamada robusta a API con reintentos exponenciales
+        async function callGeminiAPIWithRetry(key, contents, systemInstruction, retries = 5, delay = 1000) {
+            // Usamos el modelo estable de alta fidelidad y velocidad
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${key}`;
+            
+            const payload = {
+                contents: contents,
+                generationConfig: {
+                    temperature: parseFloat(tempRange.value)
+                }
+            };
+
+            // Añadir instrucción del sistema si está provista
+            if (systemInstruction) {
+                payload.systemInstruction = {
+                    parts: [{ text: systemInstruction }]
+                };
+            }
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({}));
+                        throw new Error(errorData.error?.message || `Error HTTP: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    const textResult = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (!textResult) {
+                        throw new Error("La API retornó una salida vacía.");
+                    }
+                    return textResult;
+
+                } catch (error) {
+                    if (i === retries - 1) {
+                        throw error;
+                    }
+                    await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                }
+            }
+        }
+
+        // Agregar Mensajes al DOM
+        function appendMessage(role, text, id = null) {
+            const isUser = role === 'user';
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex gap-3 max-w-3xl ${isUser ? 'ml-auto flex-row-reverse' : 'mr-auto'}`;
+            if (id) messageDiv.id = id;
+
+            const iconHtml = isUser 
+                ? `<div class="w-8 h-8 rounded-lg bg-cyan-950 border border-cyan-800 flex items-center justify-center text-cyan-400 shrink-0 shadow-sm mt-1 font-semibold text-xs">USER</div>`
+                : `
+                <div class="w-8 h-8 flex items-center justify-center shrink-0 animate-neon-strong mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-full h-full">
+                        <polygon points="50,8 88,30 88,70 50,92 12,70 12,30" fill="#0b0f19" stroke="#22d3ee" stroke-width="5" stroke-linejoin="round" />
+                        <path d="M 52 32 L 34 32 L 34 68 L 54 68 L 54 50 L 44 50" fill="none" stroke="#22d3ee" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M 66 32 L 66 60 C 66 72 56 74 46 74" fill="none" stroke="#60a5fa" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>`;
+
+            // Parsear Markdown para el bot, escapar texto plano para el usuario
+            const contentHtml = isUser 
+                ? `<div class="bg-gradient-to-r from-cyan-600 to-blue-600 text-white rounded-2xl rounded-tr-none p-4 shadow-sm text-sm whitespace-pre-wrap">${escapeHTML(text)}</div>`
+                : `
+                    <div class="bg-[#131a2e] border border-cyan-950 rounded-2xl rounded-tl-none p-4 shadow-sm text-slate-300 leading-relaxed text-sm flex-1 relative group cyber-glow-border">
+                        <div class="prose prose-invert max-w-none text-slate-300">
+                            ${marked.parse(text)}
+                        </div>
+                        <!-- Acciones flotantes del mensaje del bot -->
+                        <div class="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity flex gap-1">
+                            <button onclick="copyText(\`${escapeQuoteForClick(text)}\`)" title="Copiar Datos" class="p-1.5 bg-slate-900 hover:bg-cyan-950 border border-cyan-900 text-cyan-400 rounded-md transition shadow-xs">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                                </svg>
+                            </button>
+                            <button onclick="speakText(\`${escapeQuoteForClick(text)}\`)" title="Escuchar a Gallina Tech" class="p-1.5 bg-slate-900 hover:bg-cyan-950 border border-cyan-900 text-cyan-400 rounded-md transition shadow-xs">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+            messageDiv.innerHTML = iconHtml + contentHtml;
+            messagesContainer.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // Marcador de carga mientras responde la API
+        function appendLoadingPlaceholder(id) {
+            const placeholder = document.createElement('div');
+            placeholder.className = "flex gap-3 max-w-3xl mr-auto animate-pulse-soft";
+            placeholder.id = "loading-placeholder";
+            
+            placeholder.innerHTML = `
+                <div class="w-8 h-8 flex items-center justify-center shrink-0 animate-neon-strong mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-full h-full">
+                        <polygon points="50,8 88,30 88,70 50,92 12,70 12,30" fill="#0b0f19" stroke="#22d3ee" stroke-width="5" stroke-linejoin="round" />
+                        <path d="M 52 32 L 34 32 L 34 68 L 54 68 L 54 50 L 44 50" fill="none" stroke="#22d3ee" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M 66 32 L 66 60 C 66 72 56 74 46 74" fill="none" stroke="#60a5fa" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <div class="bg-[#131a2e] border border-cyan-950 rounded-2xl rounded-tl-none p-4 shadow-sm flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style="animation-delay: 0s"></span>
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style="animation-delay: 0.2s"></span>
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style="animation-delay: 0.4s"></span>
+                </div>
+            `;
+            messagesContainer.appendChild(placeholder);
+            scrollToBottom();
+        }
+
+        function removeLoadingPlaceholder() {
+            const el = document.getElementById('loading-placeholder');
+            if (el) el.remove();
+        }
+
+        // Mostrar errores de conexión de forma estética
+        function appendError(text) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = "flex gap-3 max-w-3xl mx-auto my-2";
+            errorDiv.innerHTML = `
+                <div class="w-full bg-rose-950/20 border border-rose-900 rounded-xl p-4 text-rose-300 text-sm flex gap-3 items-start">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-rose-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                    </svg>
+                    <div>
+                        <p class="font-bold text-rose-400">Error de conexión de hardware de API</p>
+                        <p class="mt-1">${text}</p>
+                        <p class="text-xs text-rose-500 mt-2">Revisa que tu API Key esté bien configurada en la barra de menú o vuelve a intentarlo.</p>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(errorDiv);
+            scrollToBottom();
+        }
+
+        // Desplazarse de forma fluida hacia el final del chat
+        function scrollToBottom() {
+            messagesContainer.scrollTo({
+                top: messagesContainer.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        // Sanitización básica de código HTML
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        }
+
+        // Escapar comillas para inyección segura en atributos javascript inline
+        function escapeQuoteForClick(str) {
+            return str.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');
+        }
+
+        // --- SISTEMA DE AUDIO (Gemini Text-To-Speech) ---
+        function pcmToWav(buffer, sampleRate = 24000) {
+            const bufferLength = buffer.length;
+            const wavBuffer = new ArrayBuffer(44 + bufferLength * 2);
+            const view = new DataView(wavBuffer);
+
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + bufferLength * 2, true);
+            writeString(view, 8, 'WAVE');
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true);
+            view.setUint16(22, 1, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * 2, true);
+            view.setUint16(32, 2, true);
+            view.setUint16(34, 16, true);
+            writeString(view, 36, 'data');
+            view.setUint32(40, bufferLength * 2, true);
+
+            let index = 44;
+            for (let i = 0; i < bufferLength; i++) {
+                view.setInt16(index, buffer[i], true);
+                index += 2;
+            }
+
+            return new Blob([wavBuffer], { type: 'audio/wav' });
+        }
+
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+
+        // Reproducir voz invocando el endpoint de voz de Gemini
+        async function speakText(text) {
+            const currentKey = apiKeyInput.value.trim() || apiKey;
+            
+            // Limpiar Markdown y etiquetas de código para que la voz fluya mejor
+            const cleanText = text.replace(/[*#`_\-]/g, '').replace(/```[\s\S]*?```/g, '[código omitido]').slice(0, 800);
+
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${currentKey}`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: `Dilo en español con tono tecnológico profesional: ${cleanText}` }] }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: {
+                        voiceConfig: {
+                            prebuiltVoiceConfig: {
+                                voiceName: ttsVoiceSelect.value
+                            }
+                        }
+                    }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+
+            showToast("Sintetizando respuesta de voz...");
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error("El sintetizador de voz no respondió correctamente.");
+                }
+
+                const data = await response.json();
+                const inlineData = data.candidates?.[0]?.content?.parts?.[0]?.inlineData;
+                
+                if (!inlineData || !inlineData.data) {
+                    throw new Error("Sin respuesta de audio.");
+                }
+
+                const binaryString = window.atob(inlineData.data);
+                const len = binaryString.length;
+                const bytes = new Uint8Array(len);
+                for (let i = 0; i < len; i++) {
+                    bytes[i] = binaryString.charCodeAt(i);
+                }
+
+                const pcmData = new Int16Array(bytes.buffer);
+                
+                let sampleRate = 24000;
+                const mime = inlineData.mimeType || "";
+                const rateMatch = mime.match(/rate=(\d+)/);
+                if (rateMatch) {
+                    sampleRate = parseInt(rateMatch[1], 10);
+                }
+
+                const wavBlob = pcmToWav(pcmData, sampleRate);
+                const audioUrl = URL.createObjectURL(wavBlob);
+                const audio = new Audio(audioUrl);
+                audio.play();
+
+            } catch (error) {
+                console.error("Error en Síntesis de Voz:", error);
+                showToast("Fallo al reproducir audio de Gallina Tech Jr.");
+            }
+        }
+    </script>
+</body>
+</html>
